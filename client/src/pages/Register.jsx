@@ -51,13 +51,19 @@ const{loading,setLoading}=useAppContext();
           <h1 className="text-[#FFCF01] text-xl px-6">About</h1>
 
           </div>
+
+          <div className="w-full flex justify-between bg-stone-300 h-screen">
+      <div className="w-1/2">
+
+      <iframe  className='w-full h-full ' src="https://lottie.host/embed/20e0eb4a-1191-40b7-922b-22c632cc864c/wp8z7YJVZp.json"></iframe>
+      </div>
           <div className=" mt-16 flex flex-col justify-center items-center  sm:w-1/2 gap-4 mb-8">
-          <h1 className="text-center text-xl font-medium">
-          Welcome to RapdiRoads
-          </h1>
+        
 
-
+   
+   
           <div className='h-10/12 w-full sm:w-[35vw] flex flex-col justify-center items-center bg-white/[0.7] rounded-lg shadow-lg shadow-slate-500 '> 
+        
 
           <div className="flex justify-around   w-full pt-8 mb-6  border-b border-slate-200">
           <div className="sm:text-center text-sm sm:text-base font-semibold hover:bg-[#F4F5F6] w-1/2 rounded-lg px-4 py-2">
@@ -98,12 +104,12 @@ const{loading,setLoading}=useAppContext();
 
            
 
-                  <Form className='p-4 w-full text-sm ' >
+                  <Form className='p-4 w-10/12 text-sm sm:text-base' >
 
-                  <Textfields label="Full Name" name="name" type="text" className='my-2 border border-slate-300 h-8 rounded-lg'/>
-                   <Textfields label="Email" type='email' id='email' name='email' className='my-2 border border-slate-300 h-8 rounded-lg'/>
-                  <Textfields label="Password" type='password' id='password' name='password' className='my-2 border border-slate-300 h-8 rounded-lg' />
-                  <Textfields label="Confirm Password" type='confirm_password' id='confirm_password' name='confirm_password' className='my-2 border border-slate-300 h-8 rounded-lg'  />
+                  <Textfields label="Full Name" name="name" type="text" className='my-2 border  border-slate-300 h-8 rounded-lg px-2'/>
+                   <Textfields label="Email" type='email' id='email' name='email' className='my-2 border border-slate-300 h-8 rounded-lg px-2'/>
+                  <Textfields label="Password" type='password' id='password' name='password' className='my-2 border border-slate-300 h-8 rounded-lg px-2' />
+                  <Textfields label="Confirm Password" type='confirm_password' id='confirm_password' name='confirm_password' className=' px-2 my-2 border border-slate-300 h-8 rounded-lg'  />
 
                  
                   <div className="flex justify-center my-4 ">
@@ -121,7 +127,7 @@ const{loading,setLoading}=useAppContext();
 
           </Formik>
 </div>
-
+</div>
 </div>
 <div className="flex flex-col text-sm mt-14 px-2 mx-12 gap-6"> 
      <div className="text-justify text-sm p-6 mt-10 text-black/[0.7]">

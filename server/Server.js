@@ -5,6 +5,7 @@ const cors=require("cors");
 const ConnectDb = require("./Config/connectDb");
 const useRoutes= require("./routes/userRoutes")
 const transectionRoutes=require('./routes/transectionRoutes')
+const challanRoutes = require('./routes/challanRoutes')
 
 
 //config dot env file
@@ -31,6 +32,9 @@ app.use('/users',useRoutes);
 
 //transection route
 app.use('/transection',transectionRoutes);
+
+//challan route
+app.use('/challan',challanRoutes)
 
 //database call 
 ConnectDb();

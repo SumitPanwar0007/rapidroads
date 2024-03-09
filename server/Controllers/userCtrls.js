@@ -6,16 +6,15 @@ const loginCtrl= async(req,res)=>{
     try{
         const{email,password}=req.body
              
-        const user=await userModel.findOne({
-                            email,password
-        })
+        const user =await userModel.findOne({email,password})
+        console.log(user)
         if(!user){
             return res.status(404).json({
                 success:false,message:"user not found"
             });
         }
         res.status(200).json({
-            success:true, message:'Login success',user
+            success:true, message:'Login success',user:user
         })
 
     }

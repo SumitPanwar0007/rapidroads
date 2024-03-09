@@ -3,6 +3,7 @@ import newimg from '../../images/new.svg';
 import panding from '../../images/panding.svg'
 import completed from '../../images/completed.svg';
 import total from '../../images/total.svg';
+import logout from '../../images/logoutIcon.svg'
 
 const Dashboard = () => {
   return (<> 
