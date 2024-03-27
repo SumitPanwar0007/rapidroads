@@ -147,10 +147,10 @@ catch(error){
         </Select> 
         {frequency ==='custom' && <RangePicker value={selectDate} onChange={(value)=>setSelectDate(value)} />}
         </div>
-        <h4>  Add new Transection</h4>
+        <h4>  All Transection</h4>
        
 
-        <button onClick={()=>{setShowModal(true)}} className='bg-yellow-500 rounded-lg px-2'>add more</button>
+        {/* <button onClick={()=>{setShowModal(true)}} className='bg-yellow-500 rounded-lg px-2'>more</button> */}
       </div>
 
 <div></div>

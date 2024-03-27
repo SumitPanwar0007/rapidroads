@@ -48,7 +48,7 @@ const Sidebar = () => {
       <div className="bg-slate-800 hover:text-black text-center hover:bg-yellow-500 rounded-lg px-2 font-semibold text-xl">
 
       <button onClick={()=>handleSidebar('transections')}>
-        Transection</button>
+        Transaction</button>
       </div>
 
       <div className="bg-slate-800 hover:text-black text-center hover:bg-yellow-500 rounded-lg px-2 font-semibold text-xl">
@@ -64,7 +64,7 @@ const Sidebar = () => {
 
       <div className="bg-slate-800 hover:text-black text-center hover:bg-yellow-500 rounded-lg p-2  mx-auto font-semibold text-xl ">
     <img src={logout} alt="" className='w-6 sm:hidden items-center' />
-      <button onClick={handleLogout} className='hidden sm:block '><span className='flex'>Logout <img src={logout} alt="" /> </span> </button>
+      <button onClick={handleLogout} className='hidden sm:block '><span className='flex'>Log Out  <img src={logout} alt="" /> </span> </button>
       </div>
     </div>
   )

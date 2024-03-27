@@ -3,7 +3,7 @@ import newimg from '../../images/new.svg';
 import panding from '../../images/panding.svg'
 import completed from '../../images/completed.svg';
 import total from '../../images/total.svg';
-import logout from '../../images/logoutIcon.svg'
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   return (<> 
@@ -27,10 +27,11 @@ const Dashboard = () => {
           <img src={panding} alt="" />
         </div>
         <div className="sm:text-xl text-center font-bold py-4 ">
-          Pandding Challan
+          Pending Challan
         </div>
         <div className="text-sm sm:text-lg text-end underline pt-4 sm:pt-14  pr-2 sm:pr-4">
-          View all
+        <Link to='/challan'> View all this</Link>
+         
         </div>
       </div>
 
