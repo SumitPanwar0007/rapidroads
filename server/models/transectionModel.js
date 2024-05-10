@@ -30,10 +30,23 @@ const TransectionSchema=new mongoose.Schema({
 
     },
     image:{
-      data: Buffer,
-      contentType: String
+      data : {
+          type: Buffer,
+          required:true,
+          validate:{
+              validator: function (value){
+                  return value.length>0;
+              },
+              message:'Image data is required.',
+          }
+      },
+      contentType:{
+          type:String,
+          required:true,
+      },
 
-    }
+     
+  }
 
 },{timestamp:true})
 

@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect} from 'react'
 import {Modal} from 'antd';
 import { Field, Form, Formik } from 'formik';
 import { Textfields } from '../Textfields';
@@ -37,7 +37,7 @@ const Transections = () => {
   }
   catch(err){
     console.error(err.message)
-    message.error("fetring errore")
+    message.error("Error Occured")
   }
   }
 
@@ -71,14 +71,20 @@ catch(error){
     //   key:'id'
     // },
     {
+      title:"Name",
+      dataIndex:'_name',
+      key:'_name' 
+
+    },
+    {
       title:"camID",
-      dataIndex:'cam_id',
+      dataIndex:'camID',
       key:'camID' 
 
     },
     {
       title:"Amount",
-      dataIndex:'price',
+      dataIndex:'amount',
       key:'price',
       render:(text,record)=>(
         <div style={{color:'red'}}>{text}</div>
@@ -86,8 +92,8 @@ catch(error){
       },
       {
         title:"Location",
-        dataIndex:'loc_name',
-        key:'loc_name'
+        dataIndex:'location',
+        key:'location'
       },
       {
         title:"Date",
@@ -96,9 +102,9 @@ catch(error){
         render:(text)=> <span>{moment(text).format('YYYY-MM-DD')}</span>
       },
       {
-        title:"NumberPlate",
-        dataIndex:'numberPlate',
-        key:'numberPlate'
+        title:"vehicle number",
+        dataIndex:'vehicle number',
+        key:'vehicle number'
       },
       {
         title:"Status",
@@ -150,7 +156,7 @@ catch(error){
         <h4>  All Transection</h4>
        
 
-        {/* <button onClick={()=>{setShowModal(true)}} className='bg-yellow-500 rounded-lg px-2'>more</button> */}
+        <button onClick={()=>{setShowModal(true)}} className='bg-yellow-500 rounded-lg px-2'>more</button>
       </div>
 
 <div></div>
@@ -161,15 +167,15 @@ catch(error){
  {/* title={editable ?"Edit Challan":"Add Challan"} */}
   <h1>Add Manual Challan</h1>
   <Formik
-  initialValues={{loc_name:'',cam_id:'',date:'',price:'',numberPlate:'',image:'',status:''}}
+  initialValues={{name:'',loc_name:'',cam_id:'',date:'',price:'',numberPlate:'',image:'',status:''}}
   onSubmit={ async (value)=>{
-    // console.log('values', value)
+    console.log('values', value)
     try{
    
       setLoading(true)
       const response= await axios.post('http://localhost:8081/transection/addTransection',value)
       
-      // console.log('response is : ',response.data)
+      console.log('response of the adding is : ',response.data)
       setLoading(false)
       message.success('Transection added successfullly')
       setShowModal(false)
@@ -183,6 +189,7 @@ catch(error){
   }}
   >
     <Form className='p-4 h-auto w-full text-sm'>
+
 <Textfields name="loc_name" type="text" label='Location name' className='border border-slate-300 h-8 rounded-lg my- px-4'/>
 <Textfields name="cam_id" type="text" label="camera number" className='border border-slate-300 h-8 rounded-lg my-2 px-4' />
 <Textfields name="date" type="date" label="date" className='border border-slate-300 h-8 rounded-lg my-2 px-4'/>

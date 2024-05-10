@@ -24,10 +24,7 @@ const ChallanSchema = new mongoose.Schema({
 
        
     }
-    // productDetails: [{
-    //     productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-    //     quantity: { type: Number, required: true }
-    //     }] 
+
 },{timestamp:true})
 
 //define model
@@ -35,4 +32,4 @@ const challanModel= mongoose.model('challan',ChallanSchema)
 
 //export 
 
-module.export = challanModel;
+module.exports = challanModel;

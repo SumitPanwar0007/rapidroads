@@ -5,20 +5,22 @@ const getAllTrans=async(req,res)=>{
    try{
     const {frequency,selectDate}= req.body
     
-    const transection=await transectionModel.find({
-        ...(frequency !== 'custom'?{
-            date:{
-                $gt:moment().subtract(Number(frequency),"d").toDate(),
-           }
-        }:
-        {
-            date:{
-                $gte:selectDate[0],
-                $lte: selectDate[1]
-            }
-        })
+    const transection=await transectionModel.find(
+    //     {
+    //     ...(frequency !== 'custom'?{
+    //         date:{
+    //             $gt:moment().subtract(Number(frequency),"d").toDate(),
+    //        }
+    //     }:
+    //     {
+    //         date:{
+    //             $gte:selectDate[0],
+    //             $lte: selectDate[1]
+    //         }
+    //     })
        
-    })
+    // }
+)
    
     res.status(200).json(transection)
 

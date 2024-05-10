@@ -2,7 +2,7 @@ const morgan = require("morgan");
 const dotenv=require("dotenv")
 const express= require("express")
 const cors=require("cors");
-const ConnectDb = require("./Config/connectDb");
+const {ConnectDb} = require("./Config/connectDb");
 const useRoutes= require("./routes/userRoutes")
 const transectionRoutes=require('./routes/transectionRoutes')
 const challanRoutes = require('./routes/challanRoutes')
@@ -34,7 +34,7 @@ app.use('/users',useRoutes);
 app.use('/transection',transectionRoutes);
 
 //challan route
-app.use('/challan',challanRoutes)
+app.use('/api',challanRoutes)
 
 //database call 
 ConnectDb();

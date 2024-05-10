@@ -13,7 +13,7 @@ const Sidebar = () => {
   const navigate=useNavigate();
   const data=localStorage.getItem('user')
   const name=JSON.parse(data);
-  console.log("your datas is ",name)
+  // console.log("your datas is ",name)
 
   const handleSidebar=(value)=>{
     setActiveState(value)
@@ -57,7 +57,7 @@ const Sidebar = () => {
       </div>
       <div className="bg-slate-800 hover:text-black text-center hover:bg-yellow-500 rounded-lg px-2 font-semibold text-xl">
 
-      <button onClick={()=>handleSidebar('Search')}>Search</button>
+      <button onClick={()=>handleSidebar('Search')}>Check Challan</button>
       </div>
 
       </div>
