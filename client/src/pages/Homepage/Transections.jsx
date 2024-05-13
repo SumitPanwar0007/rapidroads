@@ -1,18 +1,41 @@
-import React,{useEffect} from 'react'
-import {Modal} from 'antd';
+import React,{useEffect,useState} from 'react'
 import { Field, Form, Formik } from 'formik';
 import { Textfields } from '../Textfields';
-import { message,Table,Select, DatePicker,Space } from 'antd';
+import {Modal, message,Table,Select, DatePicker,Space } from 'antd';
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import moment from "moment"
 import axios from 'axios';
 
 import { useAppContext } from '../../components/AppContext';
 
-
 const {RangePicker}=DatePicker;
 const Transections = () => {
   
+const [ownerDetails, setOwnerDetails] = useState(null);
+const [modalVisible, setModalVisible] = useState(false);
+  const handleAccept = async (vehicleNumber) => {
+    try {
+      console.log(" first vehicle number: ", vehicleNumber)
+      const response = await axios.post('https://rto-challan-information-verification-india.p.rapidapi.com/api/rc/challaninfo',
+        {
+        headers: {
+          'content-type': 'application/json',
+          'X-RapidAPI-Key': 'f0113ce685mshcc6a043f343cb0ep108f41jsn633b3024b885',
+          'X-RapidAPI-Host': 'rto-vehicle-information-verification-india.p.rapidapi.com'
+        },
+        data: {
+          reg_no: vehicleNumber, // Replace reg_no with the available vehicle_number
+          consent: 'yes',
+          consent_text: 'I hereby declare my consent agreement for fetching my information via AITAN Labs API'
+        }
+      });
+      setOwnerDetails(response.data);
+      setModalVisible(true);
+    } catch (error) {
+      console.error(error);
+      message.error('Failed to fetch owner details.');
+    }
+  };
 
   //ContextApi
 
@@ -33,7 +56,7 @@ const Transections = () => {
       setLoading(false)
 
       setAllTransection(res.data)
-      console.log(allTransection)
+      // console.log(allTransection)
   }
   catch(err){
     console.error(err.message)
@@ -65,6 +88,8 @@ catch(error){
 
   //tabel data
   const columns=[
+    
+    
     // {
     //   title:"Id",
     //   dataIndex:'_id',
@@ -103,7 +128,7 @@ catch(error){
       },
       {
         title:"vehicle number",
-        dataIndex:'vehicle number',
+        dataIndex:'vehicle_number',
         key:'vehicle number'
       },
       {
@@ -112,7 +137,7 @@ catch(error){
         key:'status'
       },
       {
-        title: "Action",
+        title: "Edit",
         key: "action",
         render:(record,text)=>(
           <div>
@@ -132,7 +157,20 @@ catch(error){
           </div>
         )
 
-      }
+      },
+    
+  {
+    title: 'Action',
+    key: 'action',
+    render: (text, record) => (
+      <button 
+        className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded" 
+        onClick={() => handleAccept(record.vehicle_number)}
+      >
+        Accept
+      </button>
+    )
+  }
   ]
 
 
@@ -156,10 +194,10 @@ catch(error){
         <h4>  All Transection</h4>
        
 
-        <button onClick={()=>{setShowModal(true)}} className='bg-yellow-500 rounded-lg px-2'>more</button>
+        {/* <button onClick={()=>{setShowModal(true)}} className='bg-yellow-500 rounded-lg px-2'>more</button> */}
       </div>
 
-<div></div>
+     <div></div>
 <Modal
  open={showModal} 
  onCancel={()=>setShowModal(false)} 
@@ -221,7 +259,25 @@ catch(error){
   </Formik>
 </Modal>
 
-  <Table columns={columns} dataSource={allTransection} />
+  <Table columns={columns} dataSource={allTransection}   style={{ backgroundColor: '#FFD800' }}/>
+  {/* Modal for displaying owner details */}
+  <Modal
+        title="Owner Details"
+        open={modalVisible}
+        // visible={modalVisible}
+        onCancel={() => setModalVisible(false)}
+        footer={null}
+      >
+        {ownerDetails && (
+          <div>
+            <p>Owner Name: {ownerDetails.owner_name}</p>
+            <p>Owner Father's Name: {ownerDetails.owner_father_name}</p>
+            <p>Current Address: {ownerDetails.current_address_line1}, {ownerDetails.current_address_line2}, {ownerDetails.current_state} - {ownerDetails.current_pincode}</p>
+            <p>Mobile Number: {ownerDetails.mobile_no}</p>
+            
+          </div>
+        )}
+      </Modal>
     </div>
   )
 }

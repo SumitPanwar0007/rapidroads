@@ -2,3 +2,7 @@
 .bg{
     background-image:url(wallpaper.jpg);
 }
+
+.custom-table thead th {
+    font-weight: bold;
+  }

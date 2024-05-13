@@ -9,13 +9,13 @@ const ConnectDb= async()=>{
         await mongoose.connect(process.env.MONGO_URL)
         console.log(`server Running on ${mongoose.connection.host}`);
 
-          // Initialize GridFS Bucket once the connection is open
-          const db = mongoose.connection.db;
-          gfs = new GridFSBucket(db, {
-              bucketName: 'fs'
-          });
+        //   // Initialize GridFS Bucket once the connection is open
+        //   const db = mongoose.connection.db;
+        //   gfs = new GridFSBucket(db, {
+        //       bucketName: 'fs'
+        //   });
   
-          console.log("GridFS Bucket has been initialized");
+        //   console.log("GridFS Bucket has been initialized");
     }
     catch(error){
         console.log("error---",`${error}`);
@@ -26,15 +26,15 @@ const ConnectDb= async()=>{
 }
 
 // Function to access the GridFS bucket
-const getGfs = () => {
-    if (!gfs) {
-        throw new Error("GridFS Bucket is not initialized yet");
-    }
-    return gfs;
-};
+// const getGfs = () => {
+//     if (!gfs) {
+//         throw new Error("GridFS Bucket is not initialized yet");
+//     }
+//     return gfs;
+// };
 
 
-module.exports={ConnectDb,getGfs}
+module.exports={ConnectDb}
 
 
 
